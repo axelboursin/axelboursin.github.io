@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Axel Boursin, Cloud &amp; Data</title>
+<meta name="description" content="Axel Boursin, Cloud & Data Engineer : plateformes AWS en Infrastructure as Code, pipelines de données, IoT énergétique. Projets, parcours et certifications.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Axel Boursin, Cloud &amp; Data Engineer">
+<meta property="og:description" content="Axel Boursin, Cloud & Data Engineer : plateformes AWS en Infrastructure as Code, pipelines de données, IoT énergétique. Projets, parcours et certifications.">
+<meta name="twitter:card" content="summary">
+<style>
+:root{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column; projects as "system cards", each with its real data flow drawn as a pipeline of nodes */
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --ink:#14202B; --muted:#5B6874; --line:#D8DEE4;
+  --copper:#B4532A; --copper-soft:#F6E6DD; --node:#EAF0F4;
+  --f-display:"Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E151C; --surface:#151F28; --ink:#E6ECF1; --muted:#93A1AD; --line:#26333F;
+  --copper:#E58A5C; --copper-soft:#3A2419; --node:#1C2833; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E151C; --surface:#151F28; --ink:#E6ECF1; --muted:#93A1AD; --line:#26333F;
+  --copper:#E58A5C; --copper-soft:#3A2419; --node:#1C2833; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--f-body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:60rem;margin:0 auto}
+a{color:var(--copper)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--copper);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+.eyebrow{font:500 .75rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+section{padding-block:3.5rem;border-top:1px solid var(--line)}
+section > .eyebrow{display:block;margin-bottom:.75rem}
+section > h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:1.75rem;font-weight:700}
+
+/* Hero */
+header{padding-block:4rem 3rem;display:grid;gap:1.5rem}
+.status{display:inline-flex;align-items:center;gap:.5rem;font:500 .8rem/1 var(--f-mono);color:var(--muted)}
+.status i{width:.55rem;height:.55rem;border-radius:50%;background:#2E9E63;box-shadow:0 0 0 3px color-mix(in srgb,#2E9E63 25%,transparent)}
+header h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:700;letter-spacing:-.02em}
+header h1 span{color:var(--copper)}
+.lede{font-size:1.15rem;max-width:40rem;color:var(--muted);margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.7rem 1.1rem;border-radius:6px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:#fff}
+:root[data-theme="dark"] .btn.primary{color:#1A0F0A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#1A0F0A}}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font:400 .85rem/1.4 var(--f-mono);color:var(--muted);margin:0;padding:0;list-style:none}
+
+/* Two audiences */
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem}
+.duo article{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.5rem;display:grid;gap:.75rem;align-content:start;min-width:0}
+.duo h3{font-size:1.3rem}
+.duo ul{margin:0;padding-left:1.1rem;color:var(--muted)}
+.duo li{margin-block:.25rem}
+
+/* Projects */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.filters button{font:500 .8rem/1 var(--f-mono);padding:.5rem .8rem;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.projects{display:grid;gap:1.25rem}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.5rem;display:grid;gap:1rem;min-width:0}
+.proj-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 1rem;align-items:baseline}
+.proj h3{font-size:1.35rem;font-weight:700}
+.ctx{font:400 .8rem/1.3 var(--f-mono);color:var(--muted)}
+.proj p{margin:0;max-width:65ch}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;padding:.9rem;border-radius:6px;background:var(--node);overflow-x:auto}
+.flow span{font:500 .78rem/1.2 var(--f-mono);padding:.4rem .6rem;border-radius:4px;background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.flow b{color:var(--copper);font:500 .9rem/1 var(--f-mono)}
+.flow em{font:400 .7rem/1 var(--f-mono);font-style:normal;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-right:.3rem}
+.points{margin:0;padding-left:1.1rem}
+.points li{margin-block:.2rem}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.tags span{font:400 .72rem/1 var(--f-mono);padding:.35rem .5rem;border-radius:3px;background:var(--copper-soft);color:var(--copper)}
+
+/* Timeline */
+.tl{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.tl li{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;padding-block:1rem;border-bottom:1px dashed var(--line)}
+.tl li:last-child{border-bottom:0}
+.tl time{font:400 .8rem/1.5 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.tl h3{font:600 1rem/1.4 var(--f-body)}
+.tl p{margin:.15rem 0 0;color:var(--muted);font-size:.92rem}
+@media (max-width:540px){.tl li{grid-template-columns:1fr;gap:.25rem}}
+
+/* Certifications */
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.75rem}
+.cert{border:1px solid var(--line);border-radius:6px;padding:.9rem 1rem;display:grid;gap:.2rem;min-width:0}
+.cert strong{font-weight:600;font-size:.95rem}
+.cert span{font:400 .75rem/1.3 var(--f-mono);color:var(--muted)}
+
+footer{padding-block:3rem 4rem;border-top:1px solid var(--line);display:grid;gap:1rem}
+footer h2{font-size:clamp(1.6rem,3.5vw,2.2rem)}
+footer p{margin:0;color:var(--muted);max-width:40rem}
+@media (prefers-reduced-motion:no-preference){.proj{transition:opacity .2s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="status"><i></i>À l'écoute de nouvelles opportunités</span>
+  <h1>Axel Boursin<br><span>Cloud &amp; Data Engineer</span></h1>
+  <p class="lede">Je conçois des plateformes <strong>AWS</strong> industrialisées en <strong>Infrastructure as Code</strong>, des pipelines de données fiables et le monitoring qui va avec. Dix ans de terrain, du PL/SQL à l'IoT énergétique.</p>
+  <div class="cta">
+    <a class="btn primary" href="#projets">Voir les projets</a>
+    <a class="btn" href="https://www.linkedin.com/in/axelboursin/" target="_blank" rel="noopener">Me contacter sur LinkedIn ↗</a>
+  </div>
+  <ul class="facts">
+    <li>Compiègne, Hauts-de-France</li>
+    <li>Hybride · À distance</li>
+    <li>AWS · Terraform · Databricks · Datadog</li>
+  </ul>
+</header>
+
+<section id="offre">
+  <span class="eyebrow">Ce que j'apporte</span>
+  <h2>Deux façons de travailler ensemble</h2>
+  <div class="duo">
+    <article>
+      <span class="eyebrow">Pour une équipe tech</span>
+      <h3>Renfort Cloud &amp; DevOps</h3>
+      <ul>
+        <li>Plateformes AWS multi-comptes, sécurisées par défaut</li>
+        <li>IaC avec Terraform Cloud, CI/CD GitHub Actions</li>
+        <li>Conteneurs sur ECS, réseau VPC, observabilité Datadog</li>
+        <li>Data engineering : Databricks, dbt, Snowflake, Glue</li>
+      </ul>
+    </article>
+    <article>
+      <span class="eyebrow">Pour une PME</span>
+      <h3>Automatiser ce qui vous fait perdre du temps</h3>
+      <ul>
+        <li>Repérer les tâches manuelles et les ressaisies</li>
+        <li>Relier vos outils et fiabiliser vos données</li>
+        <li>Mettre en place des traitements automatiques, documentés</li>
+        <li>Un cloud dimensionné et maîtrisé, sans surcoût caché</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="projets">
+  <span class="eyebrow">Réalisations</span>
+  <h2>Projets</h2>
+  <div class="filters" role="group" aria-label="Filtrer les projets">
+    <button type="button" id="f-all" data-f="all" aria-pressed="true">Tous</button>
+    <button type="button" id="f-cloud" data-f="cloud" aria-pressed="false">Cloud &amp; DevOps</button>
+    <button type="button" id="f-data" data-f="data" aria-pressed="false">Data</button>
+    <button type="button" id="f-iot" data-f="iot" aria-pressed="false">IoT &amp; Énergie</button>
+  </div>
+
+  <div class="projects">
+    <article class="proj" data-cat="iot cloud">
+      <div class="proj-head"><h3>Plateforme cloud pour systèmes énergétiques connectés</h3><span class="ctx">Eclipse · 2024–2026</span></div>
+      <p>Collecter les mesures d'équipements industriels sur site, les acheminer de façon sécurisée vers AWS, puis les traiter et les superviser. Toute l'infrastructure est décrite en code et déployée avec Terraform Cloud.</p>
+      <div class="flow" aria-label="Flux de données">
+        <em>flux</em><span>Équipements · Modbus</span><b>→</b><span>AWS IoT Core · MQTT</span><b>→</b><span>Databricks</span><b>→</b><span>Datadog</span>
+      </div>
+      <div class="tags"><span>Terraform Cloud</span><span>AWS IoT Core</span><span>MQTT</span><span>Modbus</span><span>Databricks</span><span>Datadog</span></div>
+    </article>
+
+    <article class="proj" data-cat="iot">
+      <div class="proj-head"><h3>Simulateur de batteries stationnaires (BESS)</h3><span class="ctx">Eclipse · Python</span></div>
+      <p>Développement en Python d'un simulateur de Battery Energy Storage Systems, pour produire des données réalistes et tester la plateforme sans dépendre du matériel physique.</p>
+      <div class="flow"><em>flux</em><span>Simulateur BESS · Python</span><b>→</b><span>Messages MQTT</span><b>→</b><span>Plateforme IoT</span></div>
+      <div class="tags"><span>Python</span><span>Simulation</span><span>IoT</span></div>
+    </article>
+
+    <article class="proj" data-cat="cloud">
+      <div class="proj-head"><h3>Sécurisation multi-comptes AWS</h3><span class="ctx">Eclipse · Migration</span></div>
+      <p>Migration vers une organisation AWS multi-comptes avec accès centralisés, MFA imposé par défaut et application stricte du moindre privilège.</p>
+      <ul class="points">
+        <li>AWS Organizations pour séparer les environnements</li>
+        <li>IAM Identity Center pour des accès unifiés, MFA obligatoire</li>
+        <li>Bonnes pratiques AWS appliquées, notamment le least-privilege</li>
+      </ul>
+      <div class="tags"><span>AWS Organizations</span><span>IAM Identity Center</span><span>MFA</span><span>Sécurité</span></div>
+    </article>
+
+    <article class="proj" data-cat="cloud">
+      <div class="proj-head"><h3>Chaîne CI/CD et déploiement conteneurisé</h3><span class="ctx">Eclipse · DevOps</span></div>
+      <p>Pipelines GitHub Actions authentifiés auprès d'AWS par OpenID Connect, sans clé d'accès stockée. Les applications sont conteneurisées et déployées sur ECS, avec les versions pilotées par Parameter Store.</p>
+      <div class="flow"><em>flux</em><span>GitHub Actions</span><b>→</b><span>OIDC</span><b>→</b><span>Image Docker</span><b>→</b><span>AWS ECS</span><b>·</b><span>Parameter Store</span></div>
+      <div class="tags"><span>GitHub Actions</span><span>OIDC</span><span>Docker</span><span>ECS</span><span>VPC</span></div>
+    </article>
+
+    <article class="proj" data-cat="data">
+      <div class="proj-head"><h3>Modernisation data et gouvernance</h3><span class="ctx">Komeet Technologies · Conseil</span></div>
+      <p>Audits data d'environnements clients avec préconisations, puis mise en œuvre : intégration, modélisation et mise à disposition des données. Formation des équipes, côté fonctionnel et technique.</p>
+      <div class="flow"><em>flux</em><span>Sources</span><b>→</b><span>Talend Cloud</span><b>→</b><span>Snowflake</span><b>→</b><span>dbt · tests &amp; doc</span></div>
+      <div class="tags"><span>Talend Cloud</span><span>dbt</span><span>Snowflake</span><span>Gouvernance</span><span>Formation</span></div>
+    </article>
+
+    <article class="proj" data-cat="data cloud">
+      <div class="proj-head"><h3>Data analytics sur AWS</h3><span class="ctx">Komeet Technologies</span></div>
+      <p>Projets d'analyse de données de bout en bout dans AWS, du streaming à la requête analytique.</p>
+      <div class="flow"><em>flux</em><span>Kinesis / MSK</span><b>→</b><span>S3</span><b>→</b><span>Glue</span><b>→</b><span>Athena · Redshift</span></div>
+      <div class="tags"><span>Kinesis</span><span>MSK Kafka</span><span>S3</span><span>Glue</span><span>Athena</span><span>Redshift</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="parcours">
+  <span class="eyebrow">Parcours</span>
+  <h2>Du développement au cloud</h2>
+  <ol class="tl" reversed>
+    <li><time>2024 – 2026</time><div><h3>Cloud Engineer · Eclipse</h3><p>Plateformes AWS pour l'énergie connectée, IaC, sécurité, monitoring.</p></div></li>
+    <li><time>2022 – 2024</time><div><h3>Data Engineer · Komeet Technologies</h3><p>Conseil data, Talend Cloud, dbt, Snowflake, data analytics AWS.</p></div></li>
+    <li><time>2021 – 2022</time><div><h3>Data Engineer · WYZ Group</h3><p>Intégration de données et ESB avec Talend, traitements de gros volumes.</p></div></li>
+    <li><time>2020 – 2021</time><div><h3>Ingénieur Interopérabilité · BOW Medical</h3><p>Interopérabilité santé selon les normes IHE France, déploiement chez les clients.</p></div></li>
+    <li><time>2019 – 2020</time><div><h3>Ingénieur études et développement · AUSY</h3><p>Bases Oracle connectées en temps réel à des systèmes logistiques.</p></div></li>
+    <li><time>2016 – 2019</time><div><h3>Alternances · CGI puis EDF</h3><p>PL/SQL et Talend chez CGI, application interne WebDev chez EDF.</p></div></li>
+  </ol>
+</section>
+
+<section id="certifications">
+  <span class="eyebrow">Certifications</span>
+  <h2>Validé par les éditeurs</h2>
+  <div class="certs">
+    <div class="cert"><strong>AWS Certified Data Analytics – Specialty</strong><span>AWS · obtenue en 2023</span></div>
+    <div class="cert"><strong>Databricks Certified Data Engineer Associate</strong><span>Databricks · obtenue en 2023</span></div>
+    <div class="cert"><strong>dbt Fundamentals</strong><span>dbt Labs · obtenue en 2023</span></div>
+    <div class="cert"><strong>AWS Certified Cloud Practitioner</strong><span>AWS · obtenue en 2022</span></div>
+    <div class="cert"><strong>AWS Partner Accreditation</strong><span>AWS · Technical &amp; Business · 2022</span></div>
+    <div class="cert"><strong>Claude Academy: Claude 101</strong><span>Anthropic · 2026</span></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <span class="eyebrow">Contact</span>
+  <h2>Un projet, une mission, une question ?</h2>
+  <p>Le plus simple est de m'écrire sur LinkedIn. Je réponds rapidement.</p>
+  <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/axelboursin/" target="_blank" rel="noopener">linkedin.com/in/axelboursin ↗</a></div>
+</footer>
+</div>
+
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  var cards=document.querySelectorAll('.proj');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f');
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      cards.forEach(function(c){c.hidden=!(f==='all'||c.getAttribute('data-cat').split(' ').indexOf(f)>-1)});
+    });
+  });
+})();
+</script>
+</body>
+</html>
