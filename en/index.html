@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Axel Boursin, Cloud &amp; Data</title>
+<meta name="description" content="Axel Boursin, Cloud & Data Engineer: AWS platforms built with Infrastructure as Code, data pipelines, energy IoT. Projects, experience and certifications.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Axel Boursin, Cloud &amp; Data Engineer">
+<meta property="og:description" content="Axel Boursin, Cloud & Data Engineer: AWS platforms built with Infrastructure as Code, data pipelines, energy IoT. Projects, experience and certifications.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://axelboursin.github.io/en/">
+<link rel="alternate" hreflang="fr" href="https://axelboursin.github.io/">
+<link rel="alternate" hreflang="en" href="https://axelboursin.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://axelboursin.github.io/">
+<style>
+:root{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="topbar" aria-label="Language">
+  <div class="lang"><a href="/" hreflang="fr" lang="fr" title="Version française">FR</a><span aria-current="page" lang="en">EN</span></div>
+</nav>
+<header>
+  <span class="status"><i></i>Open to new opportunities</span>
+  <h1>Axel Boursin<br><span>Cloud &amp; Data Engineer</span></h1>
+  <p class="lede">I build production-grade <strong>AWS</strong> platforms with <strong>Infrastructure as Code</strong>, reliable data pipelines and the monitoring that goes with them. Ten years in the field, from PL/SQL to energy IoT.</p>
+  <div class="cta">
+    <a class="btn primary" href="#projects">See projects</a>
+    <a class="btn" href="https://www.linkedin.com/in/axelboursin/" target="_blank" rel="noopener">Contact me on LinkedIn ↗</a>
+  </div>
+  <ul class="facts">
+    <li>Compiègne, France</li>
+    <li>Hybrid · Remote</li>
+    <li>AWS · Terraform · Databricks · Datadog</li>
+  </ul>
+</header>
+
+<section id="offer">
+  <span class="eyebrow">What I bring</span>
+  <h2>Two ways to work together</h2>
+  <div class="duo">
+    <article>
+      <span class="eyebrow">For a tech team</span>
+      <h3>Cloud &amp; DevOps reinforcement</h3>
+      <ul>
+        <li>Multi-account AWS platforms, secure by default</li>
+        <li>IaC with Terraform Cloud, CI/CD with GitHub Actions</li>
+        <li>Containers on ECS, VPC networking, Datadog observability</li>
+        <li>Data engineering: Databricks, dbt, Snowflake, Glue</li>
+      </ul>
+    </article>
+    <article>
+      <span class="eyebrow">For a small business</span>
+      <h3>Automate what wastes your time</h3>
+      <ul>
+        <li>Spot manual tasks and duplicate data entry</li>
+        <li>Connect your tools and make your data reliable</li>
+        <li>Set up automated, documented processes</li>
+        <li>A right-sized, controlled cloud with no hidden costs</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section id="projects">
+  <span class="eyebrow">Work</span>
+  <h2>Projects</h2>
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button type="button" id="f-all" data-f="all" aria-pressed="true">All</button>
+    <button type="button" id="f-cloud" data-f="cloud" aria-pressed="false">Cloud &amp; DevOps</button>
+    <button type="button" id="f-data" data-f="data" aria-pressed="false">Data</button>
+    <button type="button" id="f-iot" data-f="iot" aria-pressed="false">IoT &amp; Energy</button>
+  </div>
+
+  <div class="projects">
+    <article class="proj" data-cat="iot cloud">
+      <div class="proj-head"><h3>Cloud platform for connected energy systems</h3><span class="ctx">Eclipse · 2024–2026</span></div>
+      <p>Collect measurements from on-site industrial equipment, route them securely to AWS, then process and monitor them. The entire infrastructure is defined as code and deployed with Terraform Cloud.</p>
+      <div class="flow" aria-label="Data flow">
+        <em>flow</em><span>Equipment · Modbus</span><b>→</b><span>AWS IoT Core · MQTT</span><b>→</b><span>Databricks</span><b>→</b><span>Datadog</span>
+      </div>
+      <div class="tags"><span>Terraform Cloud</span><span>AWS IoT Core</span><span>MQTT</span><span>Modbus</span><span>Databricks</span><span>Datadog</span></div>
+    </article>
+
+    <article class="proj" data-cat="iot">
+      <div class="proj-head"><h3>Battery Energy Storage System (BESS) simulator</h3><span class="ctx">Eclipse · Python</span></div>
+      <p>Built a Python simulator of Battery Energy Storage Systems to generate realistic data and test the platform without depending on physical hardware.</p>
+      <div class="flow"><em>flow</em><span>BESS simulator · Python</span><b>→</b><span>MQTT messages</span><b>→</b><span>IoT platform</span></div>
+      <div class="tags"><span>Python</span><span>Simulation</span><span>IoT</span></div>
+    </article>
+
+    <article class="proj" data-cat="cloud">
+      <div class="proj-head"><h3>AWS multi-account security</h3><span class="ctx">Eclipse · Migration</span></div>
+      <p>Migration to a multi-account AWS organization with centralized access, MFA enforced by default and strict least-privilege.</p>
+      <ul class="points">
+        <li>AWS Organizations to isolate environments</li>
+        <li>IAM Identity Center for unified access, mandatory MFA</li>
+        <li>AWS best practices applied, least-privilege first</li>
+      </ul>
+      <div class="tags"><span>AWS Organizations</span><span>IAM Identity Center</span><span>MFA</span><span>Security</span></div>
+    </article>
+
+    <article class="proj" data-cat="cloud">
+      <div class="proj-head"><h3>CI/CD pipeline and container deployment</h3><span class="ctx">Eclipse · DevOps</span></div>
+      <p>GitHub Actions pipelines authenticated to AWS through OpenID Connect, with no stored access keys. Applications are containerized and deployed to ECS, with versions driven by Parameter Store.</p>
+      <div class="flow"><em>flow</em><span>GitHub Actions</span><b>→</b><span>OIDC</span><b>→</b><span>Docker image</span><b>→</b><span>AWS ECS</span><b>·</b><span>Parameter Store</span></div>
+      <div class="tags"><span>GitHub Actions</span><span>OIDC</span><span>Docker</span><span>ECS</span><span>VPC</span></div>
+    </article>
+
+    <article class="proj" data-cat="data">
+      <div class="proj-head"><h3>Data modernization and governance</h3><span class="ctx">Komeet Technologies · Consulting</span></div>
+      <p>Data audits of client environments with recommendations, then delivery: integration, modeling and serving of data. Trained teams on both the business and technical sides.</p>
+      <div class="flow"><em>flow</em><span>Sources</span><b>→</b><span>Talend Cloud</span><b>→</b><span>Snowflake</span><b>→</b><span>dbt · tests &amp; docs</span></div>
+      <div class="tags"><span>Talend Cloud</span><span>dbt</span><span>Snowflake</span><span>Governance</span><span>Training</span></div>
+    </article>
+
+    <article class="proj" data-cat="data cloud">
+      <div class="proj-head"><h3>Data analytics on AWS</h3><span class="ctx">Komeet Technologies</span></div>
+      <p>End-to-end data analytics projects on AWS, from streaming to analytical queries.</p>
+      <div class="flow"><em>flow</em><span>Kinesis / MSK</span><b>→</b><span>S3</span><b>→</b><span>Glue</span><b>→</b><span>Athena · Redshift</span></div>
+      <div class="tags"><span>Kinesis</span><span>MSK Kafka</span><span>S3</span><span>Glue</span><span>Athena</span><span>Redshift</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="experience">
+  <span class="eyebrow">Experience</span>
+  <h2>From development to the cloud</h2>
+  <ol class="tl" reversed>
+    <li><time>2024 – 2026</time><div><h3>Cloud Engineer · Eclipse</h3><p>AWS platforms for connected energy, IaC, security, monitoring.</p></div></li>
+    <li><time>2022 – 2024</time><div><h3>Data Engineer · Komeet Technologies</h3><p>Data consulting, Talend Cloud, dbt, Snowflake, AWS data analytics.</p></div></li>
+    <li><time>2021 – 2022</time><div><h3>Data Engineer · WYZ Group</h3><p>Data integration and ESB with Talend, high-volume processing.</p></div></li>
+    <li><time>2020 – 2021</time><div><h3>Interoperability Engineer · BOW Medical</h3><p>Healthcare interoperability following IHE France standards, on-site client deployments.</p></div></li>
+    <li><time>2019 – 2020</time><div><h3>Software Engineer · AUSY</h3><p>Oracle databases connected in real time to logistics systems.</p></div></li>
+    <li><time>2016 – 2019</time><div><h3>Work-study · CGI then EDF</h3><p>PL/SQL and Talend at CGI, internal WebDev application at EDF.</p></div></li>
+  </ol>
+</section>
+
+<section id="certifications">
+  <span class="eyebrow">Certifications</span>
+  <h2>Vendor-certified</h2>
+  <div class="certs">
+    <div class="cert"><strong>AWS Certified Data Analytics – Specialty</strong><span>AWS · earned 2023</span></div>
+    <div class="cert"><strong>Databricks Certified Data Engineer Associate</strong><span>Databricks · earned 2023</span></div>
+    <div class="cert"><strong>dbt Fundamentals</strong><span>dbt Labs · earned 2023</span></div>
+    <div class="cert"><strong>AWS Certified Cloud Practitioner</strong><span>AWS · earned 2022</span></div>
+    <div class="cert"><strong>AWS Partner Accreditation</strong><span>AWS · Technical &amp; Business · 2022</span></div>
+    <div class="cert"><strong>Claude Academy: Claude 101</strong><span>Anthropic · 2026</span></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <span class="eyebrow">Contact</span>
+  <h2>A project, an assignment, a question?</h2>
+  <p>The easiest way is to message me on LinkedIn. I reply quickly.</p>
+  <div class="cta"><a class="btn primary" href="https://www.linkedin.com/in/axelboursin/" target="_blank" rel="noopener">linkedin.com/in/axelboursin ↗</a></div>
+</footer>
+</div>
+<script src="/assets/filters.js"></script>
+</body>
+</html>
