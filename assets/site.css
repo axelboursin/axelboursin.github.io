@@ -26,7 +26,11 @@ section > .eyebrow{display:block;margin-bottom:.75rem}
 section > h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:1.75rem;font-weight:700}
 
 /* Hero */
-header{padding-block:4rem 3rem;display:grid;gap:1.5rem}
+header{padding-block:4rem 3rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem 2.5rem;align-items:center}
+.hero{display:grid;gap:1.5rem;min-width:0}
+.portrait{width:clamp(8rem,18vw,11rem);height:auto;aspect-ratio:1;align-self:center;border-radius:50%;object-fit:cover;display:block;
+  border:3px solid var(--surface);box-shadow:0 0 0 2px var(--copper),0 12px 30px rgba(20,32,43,.15)}
+@media (max-width:640px){header{grid-template-columns:1fr;padding-top:2.5rem}.portrait{width:7.5rem}}
 .status{display:inline-flex;align-items:center;gap:.5rem;font:500 .8rem/1 var(--f-mono);color:var(--muted)}
 .status i{width:.55rem;height:.55rem;border-radius:50%;background:#2E9E63;box-shadow:0 0 0 3px color-mix(in srgb,#2E9E63 25%,transparent)}
 header h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:700;letter-spacing:-.02em}
@@ -113,7 +117,10 @@ header{padding-top:2rem}
   .proj[hidden]{display:grid!important}
   a{color:var(--ink);text-decoration:none}
 
-  header{padding:0 0 1.25rem;gap:.7rem}
+  header{padding:0 0 1.25rem;gap:.7rem 1.75rem;break-inside:avoid}
+  .hero{gap:.7rem}
+  /* Ring drawn inside the box: an outer box-shadow gets clipped at the page margin */
+  .portrait{width:8rem;height:8rem;max-width:none;padding:3px;border:2px solid var(--copper);background:#fff;box-shadow:none}
   .print-contact{margin:0;font:500 .8rem/1 var(--f-mono);color:var(--muted)}
   header h1{font-size:2.6rem}
   .lede{font-size:1.05rem;max-width:none}
